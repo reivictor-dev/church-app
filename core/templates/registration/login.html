@@ -1,0 +1,36 @@
+{% extends "base_nav.html" %}
+
+        {% block content %}
+        
+        <div class="container login">
+            <h2>LOGIN</h2>
+  
+              <form method="post">
+                    {% csrf_token %}
+                {% if messages %}
+                  <div class="alert alert-danger">
+                    <strong>Error:</strong>
+                    <ul>
+                      {% for message in messages %}
+                      <li>
+                        {{message|safe}}
+                      </li>
+                      {%endfor%}
+                    </ul>
+                  </div>
+                  {% endif %}
+                <div class="mb-3 login-email">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+                <div class="mb-3">
+                    <span>Não possui conta? <a href="{% url 'register' %}">Cadastre-se aqui</a></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        {% endblock %}

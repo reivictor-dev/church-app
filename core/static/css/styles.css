@@ -1,0 +1,56 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../img/bg-body.jpg");
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    padding: 2em;
+    background: #fff;
+}
+
+.nav-content {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5em 5em;
+}
+
+/** LOGIN **/
+
+.login {
+    padding: 3em 10em;
+    text-align: center;
+    border: solid rgba(#000, .2);
+}
+
+.login h2 {
+    margin-bottom: 1.5em;
+}
+
+.login label{
+    padding-bottom: 0.5em;
+}
+
+.login input {
+    margin: 0 auto;
+    width: 20em;
+    font-size: 1.2em;
+}
+
+/*  POSTS  */
+
+.container {
+    color: blue;
+}

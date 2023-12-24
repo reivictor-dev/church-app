@@ -1,0 +1,66 @@
+{% load bootstrap5 %}
+<!doctype html>
+<html lang="pr-br">
+  <head>
+    <title>{% block title %}Church{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" /> 
+
+  </head>
+  <body>
+        {% block navbar %}
+        <div class="row nav-container">
+            
+            <nav class="navbar navbar-expand-sm nav-content">
+                <div class="container-fluid">
+                    <div>
+                        <a class="navbar-brand" href="#">Navbar</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                  <div>
+                      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                          <a class="nav-link" href="/">Home</a>
+                          <a class="nav-link" href="/about">Conheça</a>
+                          <a class="nav-link" href="/posts">Posts</a>
+                          <a class="nav-link" href="/contato">Contato</a>
+                            {% if user.is_authenticated %}
+                            <div class="dropdown">
+                              <a class="dropdown-toggle nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{user.username}}
+                              </a>
+                                  <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Posts</a></li>
+                                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                                    <li><a class="dropdown-item" href="#">Configurações</a></li>
+                                    <li><a class="dropdown-item" href="{%url 'logout' %}">Sair</a></li>
+                                  </ul>
+                                </div>
+                                
+                            {% else %}
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            {% endif%}
+
+                          
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </nav>
+        </div>
+        {% endblock %}
+        
+        
+     
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+  </body>
+</html>
