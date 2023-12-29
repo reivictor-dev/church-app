@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-# Create your views here.
+
+from .models import Posts
+from .forms import PostsModelForm
 
 
 def home(request):
@@ -52,5 +54,32 @@ def about(request):
     return render(request, 'about.html')
 
 
+def create_post(request):
+    if request.user.is_authenticated:
+        if str(request.method) == 'POST':
+            form = PostsModelForm(request.POST, request.FILES)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user_post = request.user
+                post.save()
+
+                messages.success(request, 'Postagem realizada com sucesso!')
+                form = PostsModelForm()
+            else:
+                messages.error(
+                    request, 'Erro ao tentar realizar postagem, tente novamente!')
+        else:
+            form = PostsModelForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'posts/create_posts.html', context)
+    else:
+        return redirect('login')
+
+
 def posts(request):
-    return render(request, 'posts.html')
+    context = {
+        'posts': Posts.objects.all()
+    }
+    return render(request, 'posts/posts.html', context)

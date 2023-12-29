@@ -1,0 +1,12 @@
+/*  POSTS  */
+
+.container-posts_title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.post-content img {
+    width: 100px;
+}

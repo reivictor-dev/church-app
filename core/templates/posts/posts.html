@@ -1,0 +1,34 @@
+{% extends 'base_nav.html' %}
+
+{% block content %}
+
+    <div class="container container-posts">
+            
+        <div class="container-posts_title">
+
+        
+        <h3>Postagens dos irmãos:</h3>
+        <a href="{% url 'create_post' %}" class="new-post_link btn btn-primary">Escreva um novo post </a>
+        
+        </div>
+        {% for post in posts %}
+        <div class="card">
+            <div class="card-header">
+              <h5>Post de: <span>{{post.get_username}}</span></h5>
+            </div>
+            <div class="card-body post-content">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.body_post}}</p>
+              {% if post.image %}
+                  <img src="{{ post.image.url }}" alt="">
+              {% endif %}
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+ 
+    
+    
+{% endblock %}
