@@ -5,9 +5,20 @@ from .models import Posts
 
 
 class RegisterForm(UserCreationForm):
+    email = forms.EmailField()
+
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
+
+
+class UpdateUserForm(forms.ModelForm):
+    username = forms.CharField(max_length=30, required=True)
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
 
 
 class LoginForm(forms.Form):

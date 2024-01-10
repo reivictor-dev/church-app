@@ -1,0 +1,40 @@
+{% extends 'base_nav.html' %}
+
+{% block content%}
+<div>
+    <h2>Perfil</h2>
+    <div class="container overflow-hidden">
+        <div class="row gx-0">
+          <div class="col">
+           <div class="p-3 border bg-light">Username</div>
+          </div>
+          <div class="col">
+            <div class="p-3 border bg-light">{{user.username}}</div>
+          </div>
+          
+        </div>
+        <div class="row gx-0">
+            <div class="col">
+             <div class="p-3 border bg-light">Email</div>
+            </div>
+            <div class="col">
+              <div class="p-3 border bg-light">{{user.email}}</div>
+            </div>
+            
+        </div>
+        <div class="row gx-0">
+            <div class="col">
+             <div class="p-3 border bg-light">Password</div>
+            </div>
+            <div class="col">
+              <div class="p-3 border bg-light">**********</div>
+            </div>
+        </div>
+        <div>
+            <a href="{% url 'update_perfil' %}" class="btn btn-warning my-3">Editar</a>
+            <a href="{% url 'update_password' %}" class="btn btn-warning my-3">Mudar senha</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse_lazy
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import PasswordChangeView
 from .forms import LoginForm
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
 from .models import Posts
-from .forms import PostsModelForm
+from .forms import PostsModelForm, RegisterForm, UpdateUserForm
 
 
 def home(request):
@@ -39,15 +40,40 @@ def user_login_view(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('login')
+            user = form.save()
+            login(request, user)
+            return redirect('home')
         else:
             print(form.errors)
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def perfil(request):
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        return redirect('login')
+
+    return render(request, 'perfil.html', {'user': user})
+
+
+def update_perfil(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            user_form = UpdateUserForm(request.POST, instance=request.user)
+
+            if user_form.is_valid():
+                user_form.save()
+                messages.success(request, 'Seu perfil foi atualizado')
+                return redirect('perfil')
+        else:
+            user_form = UpdateUserForm(instance=request.user)
+
+    return render(request, 'registration/update.html', {'user_form': user_form})
 
 
 def about(request):
@@ -83,3 +109,9 @@ def posts(request):
         'posts': Posts.objects.all()
     }
     return render(request, 'posts/posts.html', context)
+
+
+# Password change view
+class ChangePasswordView(PasswordChangeView):
+    template_name = 'registration/change_password.html'
+    success_url = reverse_lazy('perfil')

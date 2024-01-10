@@ -27,20 +27,29 @@
                         {% endfor %}
                     {% endif %}  
                     <div class="mb-3 login-email">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+                        <label for="exampleInputEmail1" class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username">
                     </div>
+
+                    <div class="mb-3 login-email">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp" name="email">
+                    </div>
+
                     <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password1">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password1">
                     </div>
+
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password Confirmation</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="password2">
+                        <input type="password" class="form-control" name="password2">
                         </div>
+
                     <div class="mb-3">
                         <span>Já possui conta? Faça o login <a href="{% url 'login' %}">aqui</a></span>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Register</button>
                 </form>
             </div>

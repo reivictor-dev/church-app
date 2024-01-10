@@ -14,6 +14,7 @@ class Base(models.Model):
         abstract = True
 
 
+# Extends BASE with createdAt and updatedAt. If a need to pick up it later I can.
 class Posts(Base):
     user_post = models.ForeignKey(
         User, on_delete=models.CASCADE, blank=True)
