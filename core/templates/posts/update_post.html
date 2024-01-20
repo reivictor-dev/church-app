@@ -1,0 +1,48 @@
+{% extends 'base_nav.html' %}
+{% load bootstrap5 %}
+{% block title %}Criar Post{% endblock %}
+{% block content %}
+
+    
+    <div class="card">
+        <div class="card-header">
+            <h3>Editar post</h3>
+          </div>
+          <div class="card-body">
+              <form method="post" action="" class="update-content" enctype="multipart/form-data" >
+                  {% csrf_token %}
+                  <div class="form-group">
+  
+                      <div class="card-title update-content_item">
+                          <label class="form-label card-text">Titulo:</label>
+                          {{form.title}}
+                      </div>
+                      
+                      <div class="card-title update-content_item">
+                          <label class="form-label">Imagem:</label>
+                          <div class="update-content_item_image">
+                              {{form.image}}
+
+                          </div>
+                        </div>
+
+                        <div class="card-title update-content_item">
+                            <label class="form-label">Link:</label>
+                            {{form.link}}
+                        </div>
+
+                        <div class="card-title update-content_item">
+                            <label class="form-label">Mensagem do Post:</label>         
+                                {{form.body_post}}
+                        </div>
+                  </div>
+  
+                  <button type="submit" class="btn btn-warning my-3">Editar</button>
+              </form>
+          </div>
+        </div>
+    </div>
+    
+    
+    
+{% endblock %}

@@ -1,9 +1,10 @@
 {% extends 'base_nav.html' %}
 {% load bootstrap5 %}
+{% block title %}Criar Post{% endblock %}
 {% block content %}
 
     
-    <div class="container login">
+    <div class="login">
         <h2>Faça sua postagem</h2>
 
         <form method="post" action="{% url 'create_post' %}" class="form" enctype="multipart/form-data">
@@ -29,7 +30,11 @@
             {% endif %}
             <div class="mb-3"><label class="form-label" for="id_title">Título</label><input type="text" name="title" maxlength="40" class="form-control" placeholder="Title" title=""  id="id_title"></div>
 
-            <div class="mb-3"><label class="form-label" for="id_body_post">Texto da postagem</label><input type="text" name="body_post" maxlength="200" class="form-control" placeholder="Texto da postagem" title="" required="" id="id_body_post"></div>
+            <div class="mb-3">
+                <label class="form-label" for="id_body_post">Texto da postagem</label>
+                <textarea name="body_post" class="form-control" id="id_body_post"></textarea>
+
+            </div>
 
             <div class="mb-3"><label class="form-label" for="id_image">Imagem</label><br><input type="file" name="image" accept="image/*" class="form-control" title=""  id="id_image"></div>
 

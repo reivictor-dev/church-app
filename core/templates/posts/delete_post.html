@@ -1,0 +1,24 @@
+{% extends 'base_nav.html' %}
+{% load bootstrap5 %}
+{% block title %}Criar Post{% endblock %}
+{% block content %}
+
+    
+    <div>
+        
+        <form method="POST">
+            <!-- Security token by Django -->
+            {% csrf_token %}
+            <div class="text-center my-5">
+
+                <h2>Deseja apagar seu post?</h2>
+                <input type="submit" value="SIM" class="btn btn-success" />
+                <a href="{% url 'posts' %}" class="btn btn-danger">Cancelar</a>
+            
+            </div>
+        </form>
+    </div>
+    
+    
+    
+{% endblock %}

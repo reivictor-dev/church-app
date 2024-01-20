@@ -19,7 +19,7 @@ class Posts(Base):
     user_post = models.ForeignKey(
         User, on_delete=models.CASCADE, blank=True)
     title = models.CharField('title', max_length=40, blank=False)
-    body_post = models.CharField('body_post', max_length=200, blank=False)
+    body_post = models.TextField('body_post', blank=False)
     image = StdImageField(upload_to='post_image',
                           variations={'thumb': (200, 200)}, blank=True)
     link = models.CharField('link', max_length=300, blank=True)
@@ -33,8 +33,12 @@ class Posts(Base):
         return self.user_post.username
 
 
-def posts_pre_save(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.title)
+class ContactModel(models.Model):
+    subject = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    message = models.TextField()
 
-
-signals.pre_save.connect(posts_pre_save, sender=Posts)
+    def __str__(self):
+        return self.email

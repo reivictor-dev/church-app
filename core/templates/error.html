@@ -1,0 +1,12 @@
+{% extends 'base_nav.html' %}
+
+{% block title %}Error Message{% endblock %}
+{% block content %}
+
+    <div class="text-center my-5">
+        <h1>Error</h1>
+        <p>{{ message }}</p>
+        <a href="{% url 'home' %}" class="btn btn-dark my-2">VOLTAR</a>
+    </div>
+
+{% endblock %}

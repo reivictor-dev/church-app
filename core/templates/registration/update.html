@@ -1,35 +1,45 @@
 {% extends 'base_nav.html' %}
 
+{% block title %}Atualizar perfil{% endblock %}
 {% block content%}
 <div>
-    <h2>Editar perfil</h2>
     
-    {% if user_form.errors %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <div id="form_errors">
-                {% for key, value in user_form.errors.items %}
-                    <strong>{{ value }}</strong>
-                {% endfor %}
+    <div class="card text-center">
+        {% if user_form.errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form_errors">
+                    {% for key, value in user_form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
+                </div>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        {% endif %}
+        <div class="card-header">
+          <h3>Editar perfil</h3>
         </div>
-    {% endif %}
-    <form method="post" action="" class="login">
-        {% csrf_token %}
-        <div class="mb-3 login-email">
-            <label for="exampleInputEmail1" class="form-label">Username:</label>
-            {{user_form.username}}
-        </div>
+        <div class="card-body">
+            <form method="post" action="" class="update-content">
+                {% csrf_token %}
+                <div class="form-group">
 
-        <div class="mb-3 login-email">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            {{user_form.email}}
-        </div>
+                    <div class="card-title update-content_item">
+                        <label class="form-label card-text">Username:</label>
+                        {{user_form.username}}
+                    </div>
+    
+                    <div class="card-title update-content_item">
+                        <label class="form-label">Email:</label>
+                        {{user_form.email}}
+                    </div>
+                </div>
 
-        <button type="submit" class="btn btn-warning">Editar</button>
-    </form>
+                <button type="submit" class="btn btn-warning my-3">Editar</button>
+            </form>
+        </div>
+      </div>
 </div>
 
 {% endblock %}

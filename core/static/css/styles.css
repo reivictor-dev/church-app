@@ -6,9 +6,16 @@
 }
 
 body {
-    background-image: url("../img/bg-body.jpg");
+    background-image: url("../img/bg-body2.jpg");
     background-repeat: repeat;
     background-position: center;
+    background-size: cover;
+}
+
+.btn:hover {
+    background-color: #211859;
+    color: #fff;
+    border: none;
 }
 
 ul {
@@ -17,14 +24,35 @@ ul {
 
 .container {
     padding: 2em;
-    background: #fff;
+    background: #8660de68;
 }
 
 .nav-content {
-    background-color: #000;
+    background-color: #00002d;
     display: flex;
     justify-content: space-between;
     padding: 1.5em 5em;
+}
+
+.navbar-brand img{
+    width: 50px;
+    height: 50px;
+}
+
+.navbar-nav a {
+    color: #fff;
+    font-size: 20px;
+}
+
+.navbar-nav a:hover {
+    background-color: #8560de;
+    border-radius: 15px;
+    color: #211859;
+    transition: ease-out;
+}
+
+.dropdown-menu {
+    background-color: #00002d;
 }
 
 /** LOGIN **/
@@ -49,6 +77,32 @@ ul {
     font-size: 1.2em;
 }
 
+.update-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.update-content_item{
+    margin: 15px 0;
+    font-size: 20px;
+    background-color: #8660de1e;
+    display: flex;
+    flex-direction: column;
+    align-items: self-start;
+    justify-content: start;
+    padding: 10px;
+}
+
+.update-content_item input[type="checkbox"] {
+    position: relative;
+}
+
+.update-content_item textarea {
+    height: 100px;
+}
 /*  POSTS  */
 
 .container-posts_title{
@@ -56,6 +110,11 @@ ul {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3em;
+}
+
+.post-header{
+    display: flex;
+    justify-content: space-between;
 }
 
 .card-header h5 {
@@ -73,4 +132,11 @@ ul {
 
 .post-content img {
     width: 50%;
+}
+
+/* home */
+
+.carousel-item img {
+    width: 100%;
+    height: 500px;
 }

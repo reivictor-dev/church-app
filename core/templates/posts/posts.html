@@ -1,8 +1,9 @@
 {% extends 'base_nav.html' %}
 
+{% block title %}Posts{% endblock %}
 {% block content %}
-
-    <div class="container container-posts">
+{% if user.is_authenticated %}
+    <div class="container-posts">
             
         <div class="container-posts_title">
 
@@ -13,8 +14,14 @@
         </div>
         {% for post in posts %}
         <div class="card">
-            <div class="card-header">
+            <div class="card-header post-header">
               <h5>Post de: <span>{{post.get_username}}</span></h5>
+              <div>
+              {% if user.username == post.get_username %}
+                <a href="{% url 'update_post' post.id %}" class="btn btn-warning">Update post</a>
+                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">X</a>
+              {% endif %}
+              </div>
             </div>
             <div class="card-body post-content">
               <h5 class="card-title">{{post.title}}</h5>
@@ -22,13 +29,14 @@
               {% if post.image %}
                   <img src="{{ post.image.url }}" alt="">
               {% endif %}
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              
             </div>
             
         </div>
         {% endfor %}
     </div>
- 
-    
+{% else %}
+    <h3>Para ver o post dos membros, se conecte com a gente: <a href="{% url 'register' %}">Clique aqui!</a></h3>
+{% endif %}
     
 {% endblock %}
