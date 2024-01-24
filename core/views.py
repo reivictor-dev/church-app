@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import PasswordChangeView
 from .forms import LoginForm
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Posts
 from .forms import PostsModelForm, RegisterForm, UpdateUserForm, ContactForm
@@ -123,10 +124,19 @@ def create_post(request):
 
 
 def posts(request):
-    context = {
-        'posts': Posts.objects.all()
-    }
-    return render(request, 'posts/posts.html', context)
+
+    posts_list = Posts.objects.all().order_by('-created')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(posts_list, 3)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'posts/posts.html', {'posts': posts})
 
 
 def update_post(request, id):

@@ -115,6 +115,7 @@ ul {
 .post-header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .card-header h5 {
@@ -132,6 +133,11 @@ ul {
 
 .post-content img {
     width: 50%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
 }
 
 /* home */
