@@ -1,0 +1,1 @@
+web: gunicorn ibbnj_church.wsgi --log-file -
